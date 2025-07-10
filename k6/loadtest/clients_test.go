@@ -1,6 +1,7 @@
 package loadtest
 
 import (
+	"fmt"
 	"math/big"
 	"testing"
 
@@ -17,6 +18,7 @@ type mockClient struct {
 	TxPoolStatusFunc    func(vu modules.VU, metrics *EthMetrics) (*eth.PoolStatus, error)
 	SendTransactionFunc func(vu modules.VU, metrics *EthMetrics, options ...TransactionOption) (*common.Hash, error)
 	CallContractFunc    func(vu modules.VU, metrics *EthMetrics, params *eth.FnContractParams) ([]interface{}, error)
+	CallFunc            func(vu modules.VU, metrics *EthMetrics, method string, params []interface{}) (interface{}, error)
 }
 
 func (m *mockClient) UID() string {
@@ -91,6 +93,10 @@ func (m *mockClient) RequestSharedWallet() (*eth.Wallet, error) {
 }
 
 func (m *mockClient) ReleaseSharedWallet(address common.Address) {}
+
+func (m *mockClient) Call(vu modules.VU, metrics *EthMetrics, method string, args ...interface{}) (interface{}, error) {
+	return nil, nil
+}
 
 func (m *mockClient) Close() {}
 
@@ -289,6 +295,24 @@ func TestReportBlockMetrics(t *testing.T) {
 		}
 		results := clients.ReportBlockMetrics(nil, nil)
 		assert.Equal(t, 2, len(results))
+		assert.Nil(t, results["0"].Data)
+		assert.Nil(t, results["0"].Err)
+		assert.Nil(t, results["1"].Data)
+		assert.Nil(t, results["1"].Err)
+	})
+}
+
+func TestCall(t *testing.T) {
+	t.Run("successful eth_chainId call", func(t *testing.T) {
+		clients := &Clients{
+			list: []Client{
+				&mockClient{uid: "0"},
+				&mockClient{uid: "1"},
+			},
+		}
+		results := clients.Call(nil, nil, "eth_chaiId", []interface{}{})
+		assert.Equal(t, 2, len(results))
+		fmt.Println(results)
 		assert.Nil(t, results["0"].Data)
 		assert.Nil(t, results["0"].Err)
 		assert.Nil(t, results["1"].Data)

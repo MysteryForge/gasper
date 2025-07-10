@@ -72,3 +72,6 @@ The following functions are exposed to k6 test scripts.
 #### Contract Operations
 - `txContract(uid, params)`: Send a contract transaction
 - `callContract(uid, params)`: Call a contract method (read-only)
+
+#### Custom RPC Calls
+- `call(uid, method, params)`: Make a custom RPC call

@@ -209,6 +209,12 @@ func (cs *Clients) TxInfoByHash(vu modules.VU, metrics *EthMetrics, txHash strin
 	})
 }
 
+func (cs *Clients) Call(vu modules.VU, metrics *EthMetrics, method string, params []interface{}) map[string]Result {
+	return executeOnAllClients(cs, func(c Client) (interface{}, error) {
+		return c.Call(vu, metrics, method, params...)
+	})
+}
+
 func executeOnAllClients[T any](cs *Clients, fn func(Client) (T, error)) map[string]Result {
 	res := make(map[string]Result)
 	wg := sync.WaitGroup{}

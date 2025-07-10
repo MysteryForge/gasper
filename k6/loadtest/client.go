@@ -39,6 +39,8 @@ type Client interface {
 	CallContract(vu modules.VU, metrics *EthMetrics, params *eth.FnContractParams) ([]interface{}, error)
 	GetTxInfo(vu modules.VU, metrics *EthMetrics, txHash common.Hash) (*eth.TransactionInfo, error)
 
+	Call(vu modules.VU, metrics *EthMetrics, method string, args ...interface{}) (interface{}, error)
+
 	RequestSharedWallet() (*eth.Wallet, error)
 	ReleaseSharedWallet(address common.Address)
 
@@ -475,9 +477,10 @@ func (c *DefaultClient) ReportBlockMetrics(vu modules.VU, metrics *EthMetrics) e
 	return nil
 }
 
-func (c *DefaultClient) Call(method string, args ...interface{}) (interface{}, error) {
+func (c *DefaultClient) Call(vu modules.VU, metrics *EthMetrics, method string, args ...interface{}) (interface{}, error) {
 	var result interface{}
-	err := c.ethClient.Rc.Call(&result, method, args...)
+	err := c.ethClient.Rc.CallContext(vu.Context(), &result, method, args...)
+	ReportReqDurationFromStats(vu, metrics, c.uid, method, time.Since(time.Now()))
 	return result, err
 }
 
