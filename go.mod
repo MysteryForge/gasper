@@ -5,7 +5,7 @@ go 1.24
 require (
 	github.com/cockroachdb/pebble v1.1.5
 	github.com/ethereum/go-ethereum v1.15.11
-	github.com/go-logr/logr v1.4.2
+	github.com/go-logr/logr v1.4.3
 	github.com/google/uuid v1.6.0
 	github.com/grafana/sobek v0.0.0-20250320150027-203dc85b6d98
 	github.com/stretchr/testify v1.10.0
