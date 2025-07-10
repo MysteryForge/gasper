@@ -1,0 +1,5 @@
+- http: http://localhost:8545
+  wallets: [0x56e3d4d1441aeed1cf796b63355a71644e91e0dc250111cb3849c82db99bcd83]
+  num_target_addresses: 1
+  db_path: .scratch/tx_load_test.db
+  rate_limit: 30000

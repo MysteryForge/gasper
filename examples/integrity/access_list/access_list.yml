@@ -1,0 +1,3 @@
+  - http: http://127.0.0.1:8123
+    target_addresses: [0xc78260046895c358dE4bE97210Efca3900544905]
+    wallets: [0xcbb34b64c1a2047fa1ce4cebe25e03985d76f374b96d639c1b894146967943fb]

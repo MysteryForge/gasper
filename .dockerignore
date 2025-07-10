@@ -1,0 +1,11 @@
+# exclude everything
+*
+
+# include only the necessary files
+
+!/bindings
+!/k6
+!go.mod
+!go.sum
+!module.go
+!Makefile

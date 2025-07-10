@@ -1,0 +1,9 @@
+- http: http://localhost:8545
+  private_keys:
+    [0x52fb3ff54731f7609d97b6b0195aa1fac56b95141c4b71eaa4f08af23558c63b]
+  wallets: [0x356a0b9483bd7ea12fc105effeba01073099b8a056ee209ec1eb15b124772045]
+  num_target_addresses: 1
+  db_path: .scratch/tx_load_test.db
+  rate_limit: 30000
+  erc721: true
+  erc721_mint: true

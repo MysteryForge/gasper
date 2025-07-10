@@ -1,0 +1,2 @@
+- http: http://localhost:8545
+  db_path: .scratch/tx_load_test.db
