@@ -1,0 +1,35 @@
+name: Lint & GoSec
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      args:
+        required: false
+        type: string
+        description: "Additional arguments for the linters"
+        default: ""
+
+jobs:
+  lint_gosec:
+    name: Lint & GoSec
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
+
+      - uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+        with:
+          path: build/cache
+          key: ${{ runner.os }}-build-tools-cache-${{ hashFiles('build/checksums.txt') }}
+
+      - uses: golangci/golangci-lint-action@4afd733a84b1f43292c63897423277bb7f4313a9
+        with:
+          version: v2.1
+
+      # - uses: securego/gosec@6decf96c3d272d5a8bbdcf9fddb5789d0be16a8d
+      #   with:
+      #     args: -conf=./.gosec.json ./...
