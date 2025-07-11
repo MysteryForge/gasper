@@ -31,4 +31,6 @@ report:
 hello:
 	./bin/gasper run --out xk6-influxdb=http://localhost:8086/gasper examples/integrity/hello/hello.js
 access_list:
-	./bin/gasper run --out xk6-influxdb=http://localhost:8086/gasper examples/integrity/access_list/access_list.js
+	./bin/gasper run --out xk6-influxdb=http://localhost:8086/gasper examples/integrity/access_list/send.js
+rpc:
+	./bin/gasper run --out xk6-influxdb=http://localhost:8086/gasper examples/integrity/rpc/send.js

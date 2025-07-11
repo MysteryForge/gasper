@@ -149,6 +149,11 @@ func (mi *ModuleInstance) Exports() modules.Exports {
 				panicIfNotInitialized(uid)
 				return sharedClients[uid].TxInfoByHash(mi.vu, mi.metrics, hash)
 			},
+
+			"call": func(uid string, method string, params []interface{}) interface{} {
+				panicIfNotInitialized(uid)
+				return sharedClients[uid].Call(mi.vu, mi.metrics, method, params)
+			},
 		},
 	}
 }
