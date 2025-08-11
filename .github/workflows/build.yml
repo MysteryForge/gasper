@@ -16,7 +16,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
 
-      - uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+      - uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809
         with:
           path: build/cache
           key: ${{ runner.os }}-build-tools-cache-${{ hashFiles('build/checksums.txt') }}
@@ -33,7 +33,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
 
-      - uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+      - uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809
         with:
           path: build/cache
           key: ${{ runner.os }}-build-tools-cache-${{ hashFiles('build/checksums.txt') }}
