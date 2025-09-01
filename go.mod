@@ -8,7 +8,7 @@ require (
 	github.com/go-logr/logr v1.4.2
 	github.com/google/uuid v1.6.0
 	github.com/grafana/sobek v0.0.0-20250320150027-203dc85b6d98
-	github.com/stretchr/testify v1.10.0
+	github.com/stretchr/testify v1.11.1
 	github.com/testcontainers/testcontainers-go v0.37.0
 	go.k6.io/k6 v1.0.0
 	golang.org/x/sync v0.14.0
